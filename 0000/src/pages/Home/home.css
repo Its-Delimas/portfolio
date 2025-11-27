@@ -1,0 +1,13 @@
+:root{
+    --primary-color:#ffffff;
+    --secondary-color:#000000;
+    --tertiary-color:#d8c8f7;
+    --supreme-color:#392EFC;
+}
+.hero{
+    background-color: var(--tertiary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

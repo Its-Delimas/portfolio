@@ -10,9 +10,9 @@
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
-    background:var(--tertiary-color);
+    background:var(--supreme-color);
     color: var(--primary-color);
-    font-size: large;
+    font-size: 1em;
 }
 .nav-links{
     display: flex;
@@ -20,7 +20,7 @@
     list-style: none;
 }
 .nav-links a{
-    color: var(--primary-color);
+    text-transform: uppercase; 
     text-decoration:none;
     font-size: none;
 }
