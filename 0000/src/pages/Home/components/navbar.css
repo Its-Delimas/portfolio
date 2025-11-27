@@ -1,8 +1,8 @@
 :root{
-    primary-color:#ffffff;
-    secondary-color:#000000;
-    tertiary-color:#6441A4;
-    supreme-color:#392EFC;
+    --primary-color:#ffffff;
+    --secondary-color:#000000;
+    --tertiary-color:#6441A4;
+    --supreme-color:#392EFC;
 }
 
 .navbar{
@@ -10,8 +10,9 @@
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
-    background:#111 ;
-    color: #fff;
+    background:var(--tertiary-color);
+    color: var(--primary-color);
+    font-size: large;
 }
 .nav-links{
     display: flex;
@@ -19,10 +20,12 @@
     list-style: none;
 }
 .nav-links a{
-    color: white;
-    text-decoration:    none;
+    color: var(--primary-color);
+    text-decoration:none;
     font-size: none;
 }
 .nav-links a:hover{
     opacity: 0.6;
+    cursor: pointer;
+    text-decoration: underline;
 }
