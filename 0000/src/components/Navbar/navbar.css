@@ -1,0 +1,47 @@
+:root{
+    --primary:#fff;
+    --secondary:#000;
+    --tertiary:#221f24;
+    --master:#20db9d;
+}
+.logo{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+span{
+    color: var(--master);
+}
+.Nav-menu{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin: 0;
+    background-color: var(--tertiary);
+    color: var(--primary);
+}
+.Navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+        gap: 2rem;
+}
+.Navbar li {
+    list-style: none;
+}
+.Navbar li a{
+    text-decoration: none;
+    color: var(--primary);
+}
+.Navbar li a:hover{
+    color: var(--master);
+    cursor: pointer;
+}
+.button{
+    border: none;
+    background-color: transparent;
+    font-size: 1.9em;
+}
+.button:hover{
+    cursor: pointer;
+}
