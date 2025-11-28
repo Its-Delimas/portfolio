@@ -1,15 +1,11 @@
-:root{
-    --primary:#fff;
-    --secondary:#000;
-    --tertiary:#221f24;
-    --master:#20db9d;
-}
+
 .logo{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 span{
     color: var(--master);
 }
+
 .Nav-menu{
     display:flex;
     justify-content:space-between;
