@@ -6,23 +6,22 @@ import Projects from './pages/Projects/project.jsx';
 import Blog from './pages/Blogs/blog.jsx';
 import Contact from './pages/Contact/contact.jsx';
 
+import Layout from './Layout/layout.jsx';
+
 
 export default function App(){
 
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
-
-                <Route path="/about" element={<About />}/>
-
-                <Route path="/skills" element={<Skills />}/>
-
-                <Route path="/projects" element={<Projects />}/>
-
-                <Route path="/blog" element={<Blog />}/>
-
-                <Route path ="/contact" element={<Contact />}/>
+                <Route path="/" element={<Layout />}/>
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<About />}/>
+                    <Route path="skills" element={<Skills />}/>
+                    <Route path="projects" element={<Projects />}/>
+                    <Route path="blog" element={<Blog />}/>
+                    <Route path ="contact" element={<Contact />}/>
+                </Route>
             </Routes>
         </BrowserRouter>
     );
