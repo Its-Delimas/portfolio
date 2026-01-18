@@ -1,0 +1,23 @@
+/* utils.css contains:
+    container/wrapper classes (max-width,centering)
+    Flexbox/grid patters used constantly
+    spacing used across multiple components
+*/
+
+.container{
+    max-width:1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sr-only{
+    /*screen reader only - accessibility */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
