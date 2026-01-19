@@ -1,0 +1,25 @@
+.hero{
+    min-height: 80vh;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-4) var(--space-5);
+}
+hero h1{
+    font-size: 3rem;
+    font-weight: 200;
+}
+
+.ctaButton{
+    display: inline-block;
+    padding: var(--space-4) var(--space-5);
+    background-color: var(--color-bra);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: var(--font-weight-semibold);
+}
+.ctaButton:Hover{
+    background-color: var(--color-brand);
+}

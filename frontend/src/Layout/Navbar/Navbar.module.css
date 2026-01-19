@@ -1,0 +1,31 @@
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-4);
+    background-color:var(--color-text-secondary);
+    color: var(--color-text-primary);
+}
+.logo{
+    font-size: 1.5em;
+    font-weight: var(--font-weight-semibold);
+}
+.logo span{
+    color: var(--color-brand);
+
+}
+.navContainer ul{
+    list-style: none;
+    display: flex;
+}
+.navLink{
+    margin: var(--space-4);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-normal);
+}
+.navLink.active{
+    text-decoration: underline var(--color-brand) 3px;
+}

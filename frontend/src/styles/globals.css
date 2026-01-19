@@ -1,10 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
 :root{
     --color-brand:#ef4444;
     --color-error: #ff0000;
     --color-success: #55ff55;
 
     --color-text-primary: #ffffff;
-    --color-text-secondary: #000000;
+    --color-text-secondary: rgba(0, 0, 0, 0.85);
     --color-text-tertiary: #ef4444;
 
     --space-1:4px;
