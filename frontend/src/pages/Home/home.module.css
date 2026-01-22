@@ -99,7 +99,7 @@
     transform: translateY(-2px);
 }
 
-/* Responsive */
+/* mobile-responsiveness */
 @media (max-width: 768px) {
     .heroActions {
         flex-direction: column;
@@ -107,8 +107,8 @@
 
     .primaryBtn,
     .secondaryBtn {
-        width: 100%;
         text-align: center;
-    }
+        width: 100%;
+       }
 
 }
