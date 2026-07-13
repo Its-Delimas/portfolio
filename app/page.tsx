@@ -1,7 +1,9 @@
+import Hero from "@/components/Hero"
+
 export default function Home() {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      welcome to my portfolio
-    </div>
+    <>
+      <Hero />
+    </>
   )
 }
