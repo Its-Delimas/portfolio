@@ -11,7 +11,7 @@ export default function Hero (){
                 Currently Deep in cloud architecture and distributed systems. Always chasing the 'why' behind the 'how'
             </p>
             <div className="mt-6 flex gap-4">
-                <a href="#projects" className="px-6 py-3 bg-black text-white rounded-md font-medium">
+                <a href="#projects" className="px-6 py-3 bg-accent text-white rounded-md font-medium">
                     View Projects
                 </a>
                 <a href="#contact" className="px-6 py-3 border border-gray-300 rounded-md font-medium">
