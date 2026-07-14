@@ -8,5 +8,7 @@ type Project = {
     slug:string;
 };
 
-
+type ProjectCardProps = {
+    project:Project;
+};
 
