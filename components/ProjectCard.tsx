@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Project = {
     title:string;
     description:string;
@@ -15,6 +17,9 @@ type ProjectCardProps = {
 export default function ProjectCard({project}:ProjectCardProps){
     return (
         <div className="border border-gray-200 rounded-lg p-6 flex flex-col gap-4">
+            <div className="relative w-full aspect-video overflow-hidden rounded-md">
+                <Image src={project.image} alt={project.title} fill className="object-cover"/>
+            </div>
             <h3 className="text-xl font-bold">{project.title}</h3>
             <p className="text-gray-600">{project.description}</p>
             <div className="flex flex-wrap gap-2">
