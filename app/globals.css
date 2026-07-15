@@ -18,7 +18,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --accent: #10b981;
+    --accent: #054822;
   }
 }
 
@@ -26,4 +26,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+*{
+    scroll-behavior: smooth;
 }
