@@ -28,8 +28,8 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-6 py-24 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
+    <section id="projects" className="px-6 py-24 md:m-8 w-vh h-full flex flex-col items-center justify-between ">
+      <h2 className="text-2xl font-bold mb-8 text-center">Featured Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
