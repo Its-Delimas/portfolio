@@ -8,17 +8,17 @@ export default function Hero (){
                   Full Stack | Cloud Engineer
                 </p>
 
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-300">
+                <h1 className="text-4xl md:text-6xl font-bold text-center text-gray-300">
                     Building reliable systems. From 
-                    <span className="text-green-900"> FULL-STACK</span> apps to 
-                    <span className="text-green-900"> CLOUD</span> infrastructure
+                    <span className="text-accent"> FULL-STACK</span> apps to 
+                    <span className="text-accent"> CLOUD</span> infrastructure
                 </h1>
 
                 <p className="mt-4 text-lg text-gray-600 max-w-xl">
                     Currently Deep in cloud architecture and distributed systems. Always chasing the 'why' behind the 'how'
                 </p>
 
-                <div className="m-6 flex gap-4 items-center justify-between">
+                <div className="m-6 flex gap-4 items-center justify-center">
                     <a href="#projects" className="px-6 py-3 bg-accent text-white rounded-md font-medium">
                         View Projects
                     </a>
@@ -35,7 +35,6 @@ export default function Hero (){
                     width={600}
                     height={400}
                     alt="Hero section IDE image"
-               
                     className="object-cover rounded-md shadow-2xl shadow-green-900/50"
                 />
                 </div>

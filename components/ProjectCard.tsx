@@ -24,7 +24,7 @@ export default function ProjectCard({project}:ProjectCardProps){
             <p className="text-gray-600">{project.description}</p>
             <div className="flex flex-wrap gap-2">
                 {project.tech.map((t)=>(
-                    <span key={t} className="text-xs px-2 py-2 bg-green-900/30 rounded-full">
+                    <span key={t} className="text-xs px-2 py-2 bg-accent rounded-full">
                         {t}
                     </span>
                 ))}
