@@ -29,8 +29,8 @@ const skills = [
 
 export default function Skills (){
     return (
-        <section id="skills" className="px-6 py-24 max-w-3xl">
-            <h2 className="text-2xl font-bold mb-8">Skills</h2>
+        <section id="skills" className="px-6 py-24 bg-green-900/50 m-16 rounded-md backdrop-blur border border-green-900">
+            <h2 className="text-2xl flex justify-center items-center pb-6 font-bold mb-8">Skills</h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8">
                 {skills.map(({name,icon:Icon})=> (
                     <div key={name} className="flex flex-col items-center gap-2">
