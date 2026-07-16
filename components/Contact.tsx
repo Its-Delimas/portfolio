@@ -24,7 +24,7 @@ export default function Contact(){
             <p className="text-gray-600 mb-8">
                 Have a project in mind or just want to connect? Send a message
             </p>
-            <div className="border border-gray-900 rounded-xl p-8 shadow-sm">
+            <div className="border border-foreground rounded-xl p-8 shadow-sm">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1">
@@ -34,7 +34,7 @@ export default function Contact(){
                             name="name"
                             value={form.name}
                             onChange={handleChange}
-                            className="border border-gray-900 rounded-lg px-4 py-3 bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition"                            required 
+                            className="border border-foreground rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition"                            required 
                             />
                     </div>
                     <div className="flex flex-col gap-1">
@@ -45,7 +45,7 @@ export default function Contact(){
                             type="email"
                             value={form.email}
                             onChange={handleChange}
-                            className="border border-gray-900 rounded-lg px-4 py-3 bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition"                            required
+                            className="border border-foreground rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition"                            required
                             />
                     </div>
                 </div>
@@ -57,7 +57,7 @@ export default function Contact(){
                             rows={5}
                             value={form.message}
                             onChange={handleChange}
-                            className="border border-gray-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
+                            className="border border-foregreound rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
                             required
                             />
                     </div>

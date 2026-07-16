@@ -18,7 +18,7 @@ export default function ProjectCard({project}:ProjectCardProps){
     return (
         <div className="border border-gray-200 rounded-lg p-6 flex flex-col gap-4">
             <div className="relative w-full aspect-video overflow-hidden rounded-md">
-                { <Image src={"/vercelDp2.png"}/*src={project.image}*/ alt={project.title} fill className="object-cover"/> }
+                { <Image src={"/inspo_1.png"}/*src={project.image}*/ alt={project.title} fill className="object-cover"/> }
             </div>
             <h3 className="text-xl font-bold">{project.title}</h3>
             <p className="text-gray-600">{project.description}</p>

@@ -4,11 +4,11 @@ export default function Hero (){
     return (
         <section className="flex flex-row md:flex:-row items-center justify-between min-h-screen px-6 gap-12">
             <div className="flex-1">
-                <p className="text-sm uppercase tracking-wide text-gray-200 text-center mb-8">
+                <p className="text-sm uppercase tracking-wide text-foreground text-center mb-8">
                   Full Stack | Cloud Engineer
                 </p>
 
-                <h1 className="text-4xl md:text-6xl font-bold text-center text-gray-300">
+                <h1 className="text-4xl md:text-6xl font-bold text-center text-foreground">
                     Building reliable systems. From 
                     <span className="text-accent"> FULL-STACK</span> apps to 
                     <span className="text-accent"> CLOUD</span> infrastructure
@@ -35,7 +35,7 @@ export default function Hero (){
                     width={600}
                     height={400}
                     alt="Hero section IDE image"
-                    className="object-cover rounded-md shadow-2xl shadow-green-900/50"
+                    className="object-cover rounded-md shadow-2xl shadow-foreground"
                 />
                 </div>
             </div>
