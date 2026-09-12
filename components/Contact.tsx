@@ -76,8 +76,8 @@ export default function Contact() {
           description="Have a project in mind or just want to connect? Send a message."
         />
 
-        <Reveal>
-          <div className="grid md:grid-cols-[240px_1fr] gap-8">
+        <Reveal className="min-w-0">
+          <div className="grid md:grid-cols-[240px_1fr] gap-8 min-w-0">
             <div className="flex flex-col gap-8">
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-wide text-muted mb-2">

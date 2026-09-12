@@ -8,7 +8,7 @@ export default function Hero() {
       <NetworkGraph className="absolute inset-0 w-full h-full opacity-40 -z-10" />
 
       <div className="grid md:grid-cols-2 gap-14 items-center w-full">
-        <Reveal>
+        <Reveal className="min-w-0">
           <p className="text-xs font-mono tracking-widest uppercase text-muted mb-5">
             Full Stack &amp; Cloud Engineer
           </p>
@@ -40,7 +40,7 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.15}>
+        <Reveal delay={0.15} className="min-w-0">
           <CodeWindow />
         </Reveal>
       </div>

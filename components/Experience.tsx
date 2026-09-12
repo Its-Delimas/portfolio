@@ -43,7 +43,7 @@ export default function Experience() {
           description="Where I've been spending my time."
         />
 
-        <div className="relative pl-8">
+        <div className="relative pl-8 min-w-0">
           <div className="absolute left-[5px] top-2 bottom-2 w-px bg-border" />
           <div className="flex flex-col gap-14">
             {items.map((item, i) => (

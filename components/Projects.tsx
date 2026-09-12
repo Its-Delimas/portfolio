@@ -16,7 +16,7 @@ export default function Projects() {
           description="A couple of things I've built recently. Click one for the full story."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 min-w-0">
           {projects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.1}>
               <ProjectCard project={project} />

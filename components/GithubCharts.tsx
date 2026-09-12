@@ -1,3 +1,5 @@
+import { MoveHorizontal } from "lucide-react";
+
 const GITHUB_USERNAME = "Its-Delimas";
 
 const streakParams = (colors: {
@@ -26,9 +28,15 @@ const light = { stroke: "e5e5e3", accent: "2563eb", label: "62666d", num: "14161
 export default function GithubCharts() {
   return (
     <div className="rounded-[var(--radius-md)] border border-border bg-surface p-6">
-      <h3 className="text-xs font-mono uppercase tracking-wide text-muted mb-4">
-        GitHub Activity
-      </h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xs font-mono uppercase tracking-wide text-muted">
+          GitHub Activity
+        </h3>
+        <span className="sm:hidden inline-flex items-center gap-1 text-[11px] text-muted">
+          <MoveHorizontal className="w-3 h-3" strokeWidth={1.75} />
+          Scroll
+        </span>
+      </div>
 
       <div className="overflow-x-auto">
         <img

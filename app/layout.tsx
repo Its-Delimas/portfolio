@@ -40,7 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <div className="bg-grid" aria-hidden="true" />
         <Navbar />
-        {children}
+        <main className="min-w-0">{children}</main>
         <Footer />
       </body>
     </html>

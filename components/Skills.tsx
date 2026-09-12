@@ -67,7 +67,7 @@ export default function Skills() {
           description="Tools and technologies I reach for, from the browser down to the infrastructure."
         />
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 min-w-0">
           {groups.map((group, i) => (
             <Reveal key={group.label} delay={i * 0.08}>
               <div className="rounded-[var(--radius-md)] border border-border bg-surface p-6 h-full transition-colors hover:border-accent/40">

@@ -19,7 +19,7 @@ export default function About() {
       <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
         <SectionHeading index="01" title="About" />
 
-        <Reveal>
+        <Reveal className="min-w-0">
           <div className="grid md:grid-cols-[1fr_180px] gap-10 items-center">
             <div>
               <p className="text-muted leading-relaxed text-base md:text-lg">
