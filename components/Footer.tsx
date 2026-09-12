@@ -19,7 +19,7 @@ export default function Footer() {
             <FaGithub className="w-4 h-4" />
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/spencer-delimas/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
