@@ -1,40 +1,7 @@
-import { QrCode, Workflow, AppWindow } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/lib/projects";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-
-const projects = [
-  {
-    title: "xTicket",
-    description:
-      "A ticketing platform with QR code generation, role-based access control, and real-time event check-in.",
-    highlights: ["QR check-in flow", "Role-based access control", "Real-time updates via Pusher"],
-    tech: ["Next.js", "TypeScript", "JWT", "Pusher"],
-    github: "https://github.com/Its-Delimas/xticket",
-    slug: "xticket",
-    icon: QrCode,
-  },
-  {
-    title: "ClientFlow",
-    description:
-      "A backend-focused client management system built with raw PostgreSQL, featuring ownership-chain authorization and structured error handling.",
-    highlights: ["Raw PostgreSQL queries", "Ownership-chain authorization", "Structured error handling"],
-    tech: ["Express", "TypeScript", "PostgreSQL", "Zod"],
-    github: "https://github.com/Its-Delimas/clientflow",
-    slug: "clientflow",
-    icon: Workflow,
-  },
-  {
-    title: "This Portfolio",
-    description:
-      "A performance-focused personal site built with the Next.js App Router, demonstrating component architecture and modern styling practices.",
-    highlights: ["App Router + server components", "Live GitHub stats via API", "Resend-powered contact form"],
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/Its-Delimas/portfolio",
-    slug: "portfolio",
-    icon: AppWindow,
-  },
-];
 
 export default function Projects() {
   return (
@@ -46,10 +13,10 @@ export default function Projects() {
         <SectionHeading
           index="04"
           title="Projects"
-          description="A few things I've built recently."
+          description="A couple of things I've built recently. Click one for the full story."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.1}>
               <ProjectCard project={project} />
