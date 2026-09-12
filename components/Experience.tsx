@@ -49,6 +49,9 @@ export default function Experience() {
             {items.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.1}>
                 <div className="relative">
+                  {item.current && (
+                    <span className="absolute -left-8 top-1.5 w-[11px] h-[11px] rounded-full bg-accent opacity-60 animate-ping" />
+                  )}
                   <span
                     className={`absolute -left-8 top-1.5 w-[11px] h-[11px] rounded-full border-2 ${
                       item.current

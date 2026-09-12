@@ -1,9 +1,11 @@
 "use client";
 
 import { Mail, X } from "lucide-react";
+import { motion } from "motion/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Modal from "./Modal";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
@@ -61,15 +63,6 @@ export default function Contact() {
       setStatus("error");
     }
   };
-
-  useEffect(() => {
-    if (status !== "success") return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setStatus("idle");
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [status]);
 
   return (
     <section
@@ -173,7 +166,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="mt-1 bg-accent text-accent-foreground rounded-[var(--radius-sm)] px-6 py-2.5 text-sm font-medium hover:bg-accent-strong transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="mt-1 bg-accent text-accent-foreground rounded-[var(--radius-sm)] px-6 py-2.5 text-sm font-medium hover:bg-accent-strong active:scale-[0.97] transition-[background-color,transform] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
                 >
                   {status === "loading" ? "Sending..." : "Send Message"}
                 </button>
@@ -187,45 +180,47 @@ export default function Contact() {
         </Reveal>
       </div>
 
-      {status === "success" && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-4"
-          onClick={() => setStatus("idle")}
-          role="dialog"
-          aria-modal="true"
+      <Modal open={status === "success"} onClose={() => setStatus("idle")}>
+        <motion.div
+          className="relative w-full max-w-sm rounded-[var(--radius-lg)] border border-border bg-surface p-8 text-center"
+          onClick={(e) => e.stopPropagation()}
+          initial={{ opacity: 0, scale: 0.95, y: 8 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 8 }}
+          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div
-            className="relative w-full max-w-sm rounded-[var(--radius-lg)] border border-border bg-surface p-8 text-center"
-            onClick={(e) => e.stopPropagation()}
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            aria-label="Close"
+            className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-[var(--radius-sm)] text-muted hover:text-accent active:scale-90 transition-[color,transform]"
           >
-            <button
-              type="button"
-              onClick={() => setStatus("idle")}
-              aria-label="Close"
-              className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-[var(--radius-sm)] text-muted hover:text-accent transition-colors"
-            >
-              <X className="w-4 h-4" strokeWidth={1.75} />
-            </button>
+            <X className="w-4 h-4" strokeWidth={1.75} />
+          </button>
 
-            <div className="mx-auto flex items-center justify-center w-12 h-12 rounded-full border border-accent text-accent mb-5">
-              <Mail className="w-5 h-5" strokeWidth={1.75} />
-            </div>
+          <motion.div
+            className="mx-auto flex items-center justify-center w-12 h-12 rounded-full border border-accent text-accent mb-5"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Mail className="w-5 h-5" strokeWidth={1.75} />
+          </motion.div>
 
-            <h3 className="text-lg font-medium text-foreground mb-2">Message sent</h3>
-            <p className="text-sm text-muted leading-relaxed">
-              Thanks for reaching out — I&apos;ll get back to you soon.
-            </p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Message sent</h3>
+          <p className="text-sm text-muted leading-relaxed">
+            Thanks for reaching out — I&apos;ll get back to you soon.
+          </p>
 
-            <button
-              type="button"
-              onClick={() => setStatus("idle")}
-              className="mt-6 w-full bg-accent text-accent-foreground rounded-[var(--radius-sm)] px-6 py-2.5 text-sm font-medium hover:bg-accent-strong transition-colors"
-            >
-              Done
-            </button>
-          </div>
-        </div>
-      )}
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="mt-6 w-full bg-accent text-accent-foreground rounded-[var(--radius-sm)] px-6 py-2.5 text-sm font-medium hover:bg-accent-strong active:scale-[0.97] transition-[background-color,transform]"
+          >
+            Done
+          </button>
+        </motion.div>
+      </Modal>
     </section>
   );
 }

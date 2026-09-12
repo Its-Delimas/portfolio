@@ -26,8 +26,13 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8 text-sm text-muted">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="relative group py-1 hover:text-foreground transition-colors"
+            >
               {link.label}
+              <span className="absolute left-0 -bottom-0.5 h-px w-full bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out" />
             </Link>
           ))}
         </div>
@@ -36,7 +41,7 @@ export default function Navbar() {
           <ThemeToggle />
           <Link
             href="/#contact"
-            className="text-sm font-medium px-4 py-2 rounded-[var(--radius-sm)] border border-border hover:border-accent hover:text-accent transition-colors"
+            className="text-sm font-medium px-4 py-2 rounded-[var(--radius-sm)] border border-border hover:border-accent hover:text-accent active:scale-[0.96] transition-[color,border-color,transform]"
           >
             Contact
           </Link>

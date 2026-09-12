@@ -45,7 +45,7 @@ export default function About() {
 
               <a
                 href="/resume.pdf"
-                className="inline-flex items-center gap-2 mt-7 px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+                className="inline-flex items-center gap-2 mt-7 px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-sm font-medium hover:border-accent hover:text-accent active:scale-[0.97] transition-[color,border-color,transform]"
               >
                 <Download className="w-3.5 h-3.5" />
                 Download Resume

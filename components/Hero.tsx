@@ -27,13 +27,13 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap gap-3">
             <a
               href="#projects"
-              className="px-5 py-2.5 rounded-[var(--radius-sm)] bg-accent text-accent-foreground text-sm font-medium hover:bg-accent-strong transition-colors"
+              className="px-5 py-2.5 rounded-[var(--radius-sm)] bg-accent text-accent-foreground text-sm font-medium hover:bg-accent-strong active:scale-[0.97] transition-[background-color,transform]"
             >
               View Projects
             </a>
             <a
               href="#contact"
-              className="px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-foreground text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+              className="px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-foreground text-sm font-medium hover:border-accent hover:text-accent active:scale-[0.97] transition-[color,border-color,transform]"
             >
               Get in Touch
             </a>

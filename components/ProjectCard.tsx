@@ -33,7 +33,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="flex items-center justify-between px-5 py-4 border-b border-border pointer-events-none">
         <span className="font-mono text-xs text-muted">{project.slug}</span>
-        <span className="flex items-center justify-center w-7 h-7 rounded-[var(--radius-sm)] border border-border text-accent">
+        <span className="flex items-center justify-center w-7 h-7 rounded-[var(--radius-sm)] border border-border text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
           <project.icon className="w-3.5 h-3.5" strokeWidth={1.75} />
         </span>
       </div>
@@ -76,7 +76,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <FaGithub className="w-4 h-4" /> Code
           </a>
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent pointer-events-none ml-auto">
-            Details <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.75} />
+            Details{" "}
+            <ArrowUpRight
+              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={1.75}
+            />
           </span>
         </div>
       </div>
