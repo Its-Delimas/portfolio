@@ -5,12 +5,12 @@ const items = [
   {
     period: "2026 — Present",
     title: "Building production-style projects",
-    place: "xTicket, ClientFlow & this portfolio",
+    place: "Heimdall, Grabit & this portfolio",
     description:
       "Started shipping full end-to-end projects independently, applying architecture and cloud concepts beyond coursework.",
     details: [
-      "Role-based auth & ownership-chain authorization",
-      "Structured error handling & validation",
+      "Live observability & request tracing",
+      "Domain-driven layered architecture",
       "Real-time features and deployment",
     ],
     current: true,
@@ -38,7 +38,7 @@ export default function Experience() {
     >
       <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
         <SectionHeading
-          index="03"
+          index="04"
           title="Experience"
           description="Where I've been spending my time."
         />

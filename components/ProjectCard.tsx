@@ -20,12 +20,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       />
 
       {cover && (
-        <div className="relative aspect-video border-b border-border pointer-events-none overflow-hidden">
+        <div className="relative aspect-[4/3] border-b border-border pointer-events-none overflow-hidden">
           <Image
             src={cover.src}
             alt={cover.alt}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover object-top"
           />
         </div>

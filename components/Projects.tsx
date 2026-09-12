@@ -11,7 +11,7 @@ export default function Projects() {
     >
       <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
         <SectionHeading
-          index="04"
+          index="03"
           title="Projects"
           description="A couple of things I've built recently. Click one for the full story."
         />

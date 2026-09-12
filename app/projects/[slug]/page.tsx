@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import ScreenshotGallery from "@/components/ScreenshotGallery";
 import { getProject, projects } from "@/lib/projects";
 
 type Props = {
@@ -30,7 +30,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <article className="max-w-3xl mx-auto px-6 md:px-10 py-24">
+    <article className="max-w-6xl mx-auto px-6 md:px-10 py-24">
       <Link
         href="/#projects"
         className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors mb-10"
@@ -76,35 +76,20 @@ export default async function ProjectPage({ params }: Props) {
 
       {project.screenshots.length > 0 && (
         <div className="mt-12 -mx-6 md:-mx-10 px-6 md:px-10">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:thin]">
-            {project.screenshots.map((shot) => (
-              <div
-                key={shot.src}
-                className="relative shrink-0 w-[78vw] sm:w-[420px] aspect-video rounded-[var(--radius-md)] border border-border overflow-hidden snap-start"
-              >
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  fill
-                  sizes="(min-width: 640px) 420px, 78vw"
-                  className="object-cover object-top"
-                />
-              </div>
-            ))}
-          </div>
+          <ScreenshotGallery screenshots={project.screenshots} />
         </div>
       )}
 
-      <div className="mt-14 pt-10 border-t border-border">
+      <div className="mt-14 pt-10 border-t border-border max-w-2xl">
         <p className="text-base text-foreground leading-relaxed">{project.overview}</p>
       </div>
 
-      <div className="mt-12 flex flex-col gap-12">
+      <div className="mt-12 flex flex-col gap-12 max-w-2xl">
         {project.sections.map((section) => (
           <div key={section.heading}>
             <h2 className="text-sm font-mono text-accent mb-4">{section.heading}</h2>
             {section.body && (
-              <p className="text-sm text-muted leading-relaxed max-w-2xl">{section.body}</p>
+              <p className="text-sm text-muted leading-relaxed">{section.body}</p>
             )}
             {section.items && (
               <ul className="flex flex-col gap-4 mt-2">
