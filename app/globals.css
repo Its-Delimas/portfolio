@@ -1,32 +1,98 @@
 @import "tailwindcss";
 
-  :root {
-    --background: #171717;
-    --foreground: #ffffff;
-    --accent: #059669;
-  }
+:root {
+  --background: #0a0b0d;
+  --surface: #111318;
+  --surface-hover: #161a20;
+  --foreground: #f2f3f5;
+  --muted: #8b929b;
+  --border: #23262b;
+  --accent: #3b82f6;
+  --accent-strong: #60a5fa;
+  --accent-foreground: #ffffff;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+}
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #059669;
+    --background: #fafaf9;
+    --surface: #ffffff;
+    --surface-hover: #f3f4f6;
+    --foreground: #14161a;
+    --muted: #62666d;
+    --border: #e5e5e3;
+    --accent: #2563eb;
+    --accent-strong: #1d4ed8;
+    --accent-foreground: #ffffff;
+  }
 }
+
+* {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  position: relative;
 }
-*{
-    scroll-behavior: smooth;
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.12;
+}
+
+@keyframes node-pulse {
+  0%, 100% { opacity: 0.9; r: 5; }
+  50% { opacity: 0.4; r: 7; }
+}
+
+.node-pulse {
+  animation: node-pulse 3.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
 }

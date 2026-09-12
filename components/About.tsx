@@ -1,18 +1,65 @@
-import { FaDownload } from "react-icons/fa";
+import { Download } from "lucide-react";
+import GithubCharts from "./GithubCharts";
+import LayerStack from "./illustrations/LayerStack";
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
-export default function About (){
-    return (
-        <section id="about" className="px-6 py-24 w-full h-[600] flex flex-col justify-between items-center">
-            <h2 className="text-2xl font-bold mb-4">About</h2>
-            <p className="text-gray-600 max-w-3xl leading-relaxed">
-                My name is Spencer Delimas. I am Currently an undergraduate at Dedan Kimathi university of Technology pursuing Bachelor of Science in Information Technology. 
-                I have a strong focus on real systems engineering and cloud infrastructure.
-                I enjoy the process of taking a system from idea to production — thinking through architecture,
-                  trade-offs, and the details that make software actually reliable and scalable.
-            </p>
-            <a href="#projects" className="flex justify-between items-center gap-2 px-6 py-3 bg-accent text-white rounded-md font-medium mt-4">
-                       <FaDownload/> Download Resume
-            </a>
-        </section>
-    )
+const focusAreas = [
+  "Cloud Architecture",
+  "Distributed Systems",
+  "Backend Engineering",
+];
+
+export default function About() {
+  return (
+    <section
+      id="about"
+      className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6 md:px-10 py-24"
+    >
+      <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
+        <SectionHeading index="01" title="About" />
+
+        <Reveal>
+          <div className="grid md:grid-cols-[1fr_180px] gap-10 items-center">
+            <div>
+              <p className="text-muted leading-relaxed text-base md:text-lg">
+                I&apos;m Spencer Delimas, a third-year Information Technology
+                student at Dedan Kimathi University of Technology with a
+                strong focus on real systems engineering and cloud
+                infrastructure. I enjoy taking a system from idea to
+                production — thinking through architecture, trade-offs, and
+                the details that make software actually reliable and
+                scalable.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-6">
+                {focusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="text-xs font-mono px-3 py-1.5 rounded-[var(--radius-sm)] border border-border text-muted"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="/resume.pdf"
+                className="inline-flex items-center gap-2 mt-7 px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Download Resume
+              </a>
+            </div>
+
+            <LayerStack className="hidden md:block w-full h-auto opacity-90" />
+          </div>
+
+          <div className="mt-14">
+            <GithubCharts />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
 }
