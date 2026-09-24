@@ -1,28 +1,31 @@
-import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
+import ProjectFeature from "./ProjectFeature";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6 md:px-10 py-24"
-    >
-      <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
+    <section id="projects" className="max-w-6xl mx-auto px-6 md:px-10 py-24 md:py-32">
+      <div className="grid md:grid-cols-[240px_1fr] gap-6 md:gap-16 items-end mb-16 md:mb-24">
         <SectionHeading
           index="03"
           title="Projects"
-          description="A couple of things I've built recently. Click one for the full story."
+          heading="Things I've shipped."
+          sticky={false}
         />
+        <p className="text-muted leading-relaxed max-w-xl md:justify-self-end">
+          A native desktop app, an observability platform, and a commerce
+          product — each built end to end, from the data model to the release.
+          Open any of them for the full case study.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 min-w-0">
-          {projects.map((project, i) => (
-            <Reveal key={project.slug} delay={i * 0.1}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-        </div>
+      <div className="flex flex-col gap-24 md:gap-32">
+        {projects.map((project, i) => (
+          <Reveal key={project.slug} className="min-w-0">
+            <ProjectFeature project={project} index={i} total={projects.length} />
+          </Reveal>
+        ))}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MotionProvider from "@/components/MotionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +15,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Spencer Delimas — full-stack & cloud engineer in Kenya building reliable systems, from web apps to the machines they run on. Case studies: deck, Heimdall, Grabit.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://spencerdelimas.vercel.app"),
   title: "Spencer Delimas | Full Stack & Cloud Engineer",
-  description: "Portfolio of Spencer Delimas, a full-stack and cloud engineer based in Kenya, showcasing projects in web development and cloud infrastructure.",
+  description,
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Spencer Delimas",
+    title: "Spencer Delimas | Full Stack & Cloud Engineer",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spencer Delimas | Full Stack & Cloud Engineer",
+    description,
+  },
 };
 
 export default function RootLayout({
@@ -39,9 +56,11 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <div className="bg-grid" aria-hidden="true" />
-        <Navbar />
-        <main className="min-w-0">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main className="min-w-0">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

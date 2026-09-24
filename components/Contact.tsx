@@ -69,11 +69,12 @@ export default function Contact() {
       id="contact"
       className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6 md:px-10 py-24"
     >
-      <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
+      <div className="grid md:grid-cols-[240px_1fr] gap-10 md:gap-16 w-full">
         <SectionHeading
           index="05"
           title="Contact"
-          description="Have a project in mind or just want to connect? Send a message."
+          heading="Let's build something reliable."
+          description="Have a project in mind or just want to connect? I read every message."
         />
 
         <Reveal className="min-w-0">

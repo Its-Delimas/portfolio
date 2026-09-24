@@ -4,20 +4,21 @@ import SectionHeading from "./SectionHeading";
 const items = [
   {
     period: "2026 — Present",
-    title: "Building production-style projects",
-    place: "Heimdall, Grabit & this portfolio",
+    title: "Building and shipping independent projects",
+    place: "deck, Heimdall, Grabit & this portfolio",
     description:
-      "Started shipping full end-to-end projects independently, applying architecture and cloud concepts beyond coursework.",
+      "Shipping full end-to-end products on my own — from a cross-platform native desktop app to web platforms — applying architecture and systems concepts well beyond coursework.",
     details: [
+      "Native desktop app released for 3 platforms",
       "Live observability & request tracing",
       "Domain-driven layered architecture",
-      "Real-time features and deployment",
+      "CI and tag-triggered release pipelines",
     ],
     current: true,
   },
   {
     period: "Jul 2024 — Present",
-    title: "BSc Information Technology",
+    title: "Bachelor of Science in Information Technology",
     place: "Dedan Kimathi University of Technology",
     description:
       "Currently in third year, expected to graduate late 2027 / early 2028.",
@@ -36,11 +37,12 @@ export default function Experience() {
       id="experience"
       className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6 md:px-10 py-24"
     >
-      <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
+      <div className="grid md:grid-cols-[240px_1fr] gap-10 md:gap-16 w-full">
         <SectionHeading
           index="04"
           title="Experience"
-          description="Where I've been spending my time."
+          heading="Where the time goes."
+          description="Studying by day, shipping by night."
         />
 
         <div className="relative pl-8 min-w-0">

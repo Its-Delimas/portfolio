@@ -16,17 +16,17 @@ export default function About() {
       id="about"
       className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6 md:px-10 py-24"
     >
-      <div className="grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 w-full">
-        <SectionHeading index="01" title="About" />
+      <div className="grid md:grid-cols-[240px_1fr] gap-10 md:gap-16 w-full">
+        <SectionHeading index="01" title="About" heading="Systems, end to end." />
 
         <Reveal className="min-w-0">
           <div className="grid md:grid-cols-[1fr_180px] gap-10 items-center">
             <div>
               <p className="text-muted leading-relaxed text-base md:text-lg">
-                I&apos;m Spencer Delimas, a third-year Information Technology
-                student at Dedan Kimathi University of Technology with a
-                strong focus on real systems engineering and cloud
-                infrastructure. I enjoy taking a system from idea to
+                I&apos;m Spencer Delimas, in my third year of a Bachelor of
+                Science in Information Technology at Dedan Kimathi University
+                of Technology, with a strong focus on real systems engineering
+                and cloud infrastructure. I enjoy taking a system from idea to
                 production — thinking through architecture, trade-offs, and
                 the details that make software actually reliable and
                 scalable.
