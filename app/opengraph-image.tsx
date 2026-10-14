@@ -19,7 +19,7 @@ export default async function OpengraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontFamily: "Baloo", fontSize: 140, lineHeight: 0.9 }}>Spencer Delimas</div>
-          <div style={{ marginTop: 24, fontSize: 36, color: "#a3a3a3" }}>Software engineer · Nairobi, Kenya</div>
+          <div style={{ marginTop: 24, fontSize: 36, color: "#a3a3a3" }}>Software engineer · Nairobi, Kenya · delimas.me</div>
         </div>
         <div style={{ display: "flex", gap: 18, fontSize: 30 }}>
           {["Grabbit", "NuruLabs", "deck", "Heimdall"].map((p, i) => (

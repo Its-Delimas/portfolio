@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SITE } from "@/lib/site";
 
 /** Baloo 2 for headlines and big numbers. */
 const display = localFont({
@@ -13,7 +14,7 @@ const description =
   "Spencer Delimas, founder of Grabbit and a software engineer in Nairobi. I build complete products: Grabbit (M-Pesa checkout for social sellers, live), NuruLabs (AI education with Python in the browser) and deck (a native developer tool).";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spencerdelimas.vercel.app"),
+  metadataBase: new URL(SITE),
   title: "Spencer Delimas · Founder of Grabbit · Software Engineer",
   description,
   // Google ignores this tag; Bing and others still glance at it
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
+    // the card itself comes from app/opengraph-image.tsx
     siteName: "Spencer Delimas",
     title: "Spencer Delimas · Founder of Grabbit · Software Engineer",
     description,
