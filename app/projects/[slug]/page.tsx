@@ -1,186 +1,136 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Download } from "lucide-react";
-import { FaGithub } from "react-icons/fa6";
-import ScreenshotGallery from "@/components/ScreenshotGallery";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { getNextProject, getProject, projects } from "@/lib/projects";
+import { Browser, Phone } from "@/components/showcase";
+import { Chip, cn, Eyebrow, Footer, Nav, ProjectLinks, WRAP } from "@/components/ui";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) return {};
+  const p = getProject((await params).slug);
+  if (!p) return { title: "Not found" };
   return {
-    title: `${project.title} — case study | Spencer Delimas`,
-    description: project.tagline,
-    openGraph: {
-      title: `${project.title} — ${project.tagline}`,
-      description: project.description,
-      images: project.screenshots[0] ? [{ url: project.screenshots[0].src }] : undefined,
-    },
+    title: `${p.name}: case study · Spencer Delimas`,
+    description: `${p.pitch} ${p.role} Spencer Delimas, software engineer in Nairobi.`,
+    alternates: { canonical: `/projects/${p.slug}` },
+    openGraph: { title: `${p.name} · Spencer Delimas`, description: p.pitch, images: [p.shots[0].src] },
   };
 }
 
+/** One project in full: the story, then every screen, large. */
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) notFound();
-  const next = getNextProject(project.slug);
-  const index = projects.findIndex((p) => p.slug === project.slug);
-
-  const meta: [string, string][] = [
-    ["Type", project.kind],
-    ["Platform", project.platform],
-    ["Status", project.status],
-    ["Year", project.year],
-    ["Stack", project.tech.join(" · ")],
-  ];
+  const p = getProject((await params).slug);
+  if (!p) notFound();
+  const next = getNextProject(p.slug);
+  const phones = p.shots.filter((s) => s.phone);
+  const screens = p.shots.filter((s) => !s.phone);
 
   return (
-    <article className="max-w-6xl mx-auto px-6 md:px-10 pt-16 pb-24">
-      <Link
-        href="/#projects"
-        className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors mb-12"
-      >
-        <ArrowLeft
-          className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
-          strokeWidth={1.75}
-        />
-        All projects
-      </Link>
-
-      <header className="grid lg:grid-cols-[1fr_320px] gap-10 lg:gap-16 items-start">
-        <div className="min-w-0">
-          <div className="flex items-center gap-3 font-mono text-xs mb-6">
-            <span className="text-accent">{String(index + 1).padStart(2, "0")}</span>
-            <span className="h-px w-6 bg-border" />
-            <span className="uppercase tracking-widest text-muted">Case study</span>
+    <>
+      <Nav />
+      <main>
+        <section className="bg-ink text-ink-fg">
+          <div className={cn(WRAP, "pb-16 pt-28 lg:pb-24 lg:pt-36")}>
+            <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-white">
+              <ArrowLeft className="h-4 w-4" /> All work
+            </Link>
+            <div className="mt-8 flex flex-wrap items-center gap-2">
+              <Chip tone="brand">{p.role}</Chip>
+              <span className="text-sm text-ink-muted">{p.status}</span>
+            </div>
+            <h1 className="mt-4 break-words font-brand text-6xl font-extrabold leading-[0.88] sm:text-8xl xl:text-9xl">{p.name}</h1>
+            <p className="mt-6 max-w-3xl text-2xl leading-snug text-ink-fg/90">{p.pitch}</p>
+            <div className="mt-8">
+              <ProjectLinks links={p.links} onInk />
+            </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.02] text-foreground">
-            {project.title}
-            <span className="text-accent">.</span>
-          </h1>
-          <p className="mt-5 text-lg md:text-xl text-foreground/85 leading-snug max-w-2xl">
-            {project.tagline}
-          </p>
-          <p className="mt-4 text-muted leading-relaxed max-w-2xl">{project.description}</p>
+        </section>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {project.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={
-                  link.kind === "download"
-                    ? "inline-flex items-center gap-2 px-5 py-2.5 rounded-[var(--radius-sm)] bg-accent text-accent-foreground text-sm font-medium hover:bg-accent-strong active:scale-[0.97] transition-[background-color,transform]"
-                    : "inline-flex items-center gap-2 px-5 py-2.5 rounded-[var(--radius-sm)] border border-border text-sm font-medium hover:border-accent hover:text-accent active:scale-[0.97] transition-[color,border-color,transform]"
-                }
-              >
-                {link.kind === "github" ? (
-                  <FaGithub className="w-4 h-4" />
-                ) : (
-                  <Download className="w-4 h-4" strokeWidth={1.75} />
-                )}
-                {link.kind === "github" ? "View source" : link.label}
-              </a>
+        <section className={cn(WRAP, "py-16 lg:py-20")}>
+          {p.notice ? (
+            <div className="mb-12 flex flex-col gap-2 rounded-3xl bg-accent-tint p-5 sm:flex-row sm:items-start sm:gap-4 sm:p-6">
+              <span className="w-fit flex-none rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-ink">Beta</span>
+              <div>
+                <p className="font-brand text-xl font-bold leading-tight">{p.notice.title}</p>
+                <p className="mt-1 max-w-3xl text-[15px] leading-relaxed text-muted">{p.notice.body}</p>
+              </div>
+            </div>
+          ) : null}
+          <div className="grid gap-10 lg:grid-cols-3 lg:gap-14">
+            <div>
+              <Eyebrow>The problem</Eyebrow>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted">{p.problem}</p>
+              <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
+                {p.facts.map((f) => (
+                  <div key={f.label}>
+                    <dd className="font-brand text-3xl font-extrabold leading-none">{f.value}</dd>
+                    <dt className="mt-1.5 text-xs text-muted">{f.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div>
+              <Eyebrow>What I built</Eyebrow>
+              <ul className="mt-3 space-y-3">
+                {p.built.map((b) => (
+                  <li key={b} className="flex gap-2.5 text-[15px] leading-relaxed text-muted">
+                    <Check className="mt-1 h-4 w-4 flex-none text-brand" strokeWidth={3} />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <Eyebrow>What makes it work</Eyebrow>
+              <ul className="mt-3 space-y-3">
+                {p.hard.map((h) => (
+                  <li key={h} className="border-l-2 border-brand pl-3 text-[15px] leading-relaxed text-muted">
+                    {h}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-1.5">
+                {p.stack.map((t) => (
+                  <Chip key={t}>{t}</Chip>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-surface-2 py-16 lg:py-20">
+          <div className={cn(WRAP, "space-y-10")}>
+            {phones.length > 0 ? (
+              <div className="flex flex-wrap justify-center gap-8">
+                {phones.map((s) => (
+                  <Phone key={s.src} shot={s} className="w-64" />
+                ))}
+              </div>
+            ) : null}
+            {screens.map((s, i) => (
+              <Browser key={s.src} shot={s} priority={i === 0} />
             ))}
           </div>
-        </div>
+        </section>
 
-        <dl className="grid grid-cols-[auto_1fr] gap-x-6 text-sm border-t border-border lg:mt-12">
-          {meta.map(([label, value]) => (
-            <div key={label} className="contents">
-              <dt className="py-3 border-b border-border font-mono text-[11px] uppercase tracking-widest text-muted">
-                {label}
-              </dt>
-              <dd className="py-3 border-b border-border text-foreground/90">{value}</dd>
+        <Link href={`/projects/${next.slug}`} className="group block border-t border-border">
+          <div className={cn(WRAP, "flex items-center justify-between gap-6 py-12")}>
+            <div>
+              <Eyebrow>Next</Eyebrow>
+              <p className="mt-2 font-brand text-5xl font-extrabold leading-none group-hover:text-brand">{next.name}</p>
+              <p className="mt-2 text-muted">{next.pitch}</p>
             </div>
-          ))}
-        </dl>
-      </header>
-
-      {project.screenshots.length > 0 && (
-        <div className="mt-16 -mx-6 md:-mx-10 px-6 md:px-10">
-          <ScreenshotGallery screenshots={project.screenshots} />
-        </div>
-      )}
-
-      <div className="mt-20 grid md:grid-cols-[240px_1fr] md:gap-x-16">
-        <p className="font-mono text-xs uppercase tracking-widest text-muted md:pt-1.5">
-          Overview
-        </p>
-        <p className="mt-3 md:mt-0 text-lg text-foreground/90 leading-relaxed max-w-2xl">
-          {project.overview}
-        </p>
-
-        {project.sections.map((section) => (
-          <div key={section.heading} className="contents">
-            <h2 className="mt-12 pt-8 border-t border-border font-mono text-xs uppercase tracking-widest text-accent">
-              {section.heading}
-            </h2>
-            <div className="mt-3 md:mt-12 md:pt-8 md:border-t md:border-border max-w-2xl">
-              {section.body && <p className="text-muted leading-relaxed">{section.body}</p>}
-              {section.items && (
-                <ul className="flex flex-col gap-4">
-                  {section.items.map((item, i) => (
-                    <li key={i} className="flex gap-4">
-                      <span className="shrink-0 mt-0.5 font-mono text-xs text-accent">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-muted leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <ArrowRight className="h-8 w-8 flex-none transition-transform group-hover:translate-x-1" />
           </div>
-        ))}
-      </div>
-
-      <Link
-        href={`/projects/${next.slug}`}
-        className="group mt-24 flex items-end justify-between gap-6 border-t border-border pt-10"
-      >
-        <div className="min-w-0">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted mb-3">
-            Next project
-          </p>
-          <p className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors">
-            {next.title}
-          </p>
-          <p className="mt-2 text-muted truncate">{next.tagline}</p>
-        </div>
-        <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-[var(--radius-sm)] border border-border text-muted group-hover:border-accent group-hover:text-accent transition-colors">
-          <ArrowRight
-            className="w-5 h-5 transition-transform group-hover:translate-x-0.5"
-            strokeWidth={1.75}
-          />
-        </span>
-      </Link>
-
-      <div className="mt-12 flex items-center justify-between flex-wrap gap-4 text-sm">
-        <p className="text-muted">Have a project in mind?</p>
-        <Link
-          href="/#contact"
-          className="group inline-flex items-center gap-1.5 font-medium text-accent hover:text-accent-strong transition-colors"
-        >
-          Get in touch
-          <ArrowUpRight
-            className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            strokeWidth={1.75}
-          />
         </Link>
-      </div>
-    </article>
+      </main>
+      <Footer />
+    </>
   );
 }

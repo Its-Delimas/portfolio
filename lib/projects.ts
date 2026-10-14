@@ -1,179 +1,195 @@
-import { Waypoints, Rabbit, MonitorDot, type LucideIcon } from "lucide-react";
+/**
+ * Everything the portfolio says about the work. Facts only, and short. The
+ * home page shows the pitch and the numbers; the rest is on each project's
+ * own page for whoever wants it. Nothing here describes how a product's
+ * security works inside, only what it guarantees.
+ */
 
-export type ProjectSection = {
-  heading: string;
-  body?: string;
-  items?: string[];
-};
+export type Shot = { src: string; alt: string; w: number; h: number; phone?: boolean };
 
-export type Screenshot = {
-  src: string;
-  alt: string;
-};
-
-export type ProjectLink = {
-  label: string;
-  href: string;
-  kind: "github" | "download";
-};
+export type ProjectLink = { label: string; href: string; kind: "live" | "github" | "download" };
 
 export type Project = {
   slug: string;
-  title: string;
-  tagline: string;
-  description: string;
-  kind: string;
-  platform: string;
-  status: string;
+  name: string;
+  /** Spencer's part in it: shown as a chip. */
+  role: string;
+  /** Grouping on the page: the two products, or personal projects. */
+  kind: "product" | "personal";
   year: string;
-  highlights: string[];
-  tech: string[];
+  status: string;
+  /** One line: what it is. */
+  pitch: string;
+  /** Two or three sentences: who it's for and what it changes. */
+  problem: string;
+  /** What was built, one short line each. */
+  built: string[];
+  /** What it guarantees or does well, one short line each. */
+  hard: string[];
+  /** Small true numbers. */
+  facts: { value: string; label: string }[];
+  /** The product's own wordmark, linking to it. */
+  logo?: { src: string; w: number; h: number; href: string };
+  /** A note shown on the project's page, e.g. what a beta is checking. */
+  notice?: { title: string; body: string };
+  stack: string[];
   links: ProjectLink[];
-  icon: LucideIcon;
-  overview: string;
-  sections: ProjectSection[];
-  screenshots: Screenshot[];
+  /** First is the main laptop screen; the first phone shot is shown on phones. */
+  shots: Shot[];
 };
+
+const D = (src: string, alt: string): Shot => ({ src, alt, w: 2880, h: 1800 });
+const P = (src: string, alt: string): Shot => ({ src, alt, w: 780, h: 1688, phone: true });
 
 export const projects: Project[] = [
   {
-    slug: "deck",
-    title: "deck",
-    tagline: "A native developer system monitor and environment manager.",
-    description:
-      "What's eating the CPU, what's listening on port 3000, which services are running, where the disk went — answered in one desktop app instead of six terminal windows.",
-    kind: "Desktop app",
-    platform: "Linux · Windows · macOS",
-    status: "v0.1.0 released",
+    slug: "grabbit",
+    name: "Grabbit",
+    role: "Founder & engineer",
+    kind: "product",
     year: "2026",
-    highlights: [
-      "Every listening port joined to its process and project",
-      "Real PTY terminal, journald + Docker log streaming",
-      "Hardware inventory that cites the source of every value",
+    status: "Live at grabbit.co.ke",
+    pitch: "An M‑Pesa checkout behind anything a Kenyan seller posts on WhatsApp, Instagram or TikTok.",
+    problem:
+      "Small sellers in Kenya sell from their phones, and every sale is a long chat: price, delivery, then chasing the M‑Pesa message. Grabbit turns a post into a link where the buyer picks, pays with an M‑Pesa prompt, and the money lands in the seller's own till.",
+    built: [
+      "Seller onboarding, products and a dashboard for orders, stock and bills",
+      "A shop page, item pages and a bag that pays for several items at once",
+      "Payouts to a till, paybill or bank account",
+      "An admin control room and an installable app",
     ],
-    tech: ["Go", "Wails", "React", "TypeScript"],
+    hard: [
+      "Real M‑Pesa payments, confirmed before an order counts as paid",
+      "Every payment recorded exactly once",
+      "Items can't be sold twice while a buyer is paying",
+      "Buyers pay sellers directly; Grabbit never holds the money",
+      "140+ automated tests on the rules that touch money",
+    ],
+    facts: [
+      { value: "Live", label: "real M‑Pesa payments" },
+      { value: "KSh 0", label: "held by Grabbit" },
+      { value: "140+", label: "automated tests" },
+    ],
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "M‑Pesa", "Vercel"],
+    links: [{ label: "Visit grabbit.co.ke", href: "https://grabbit.co.ke", kind: "live" }],
+    logo: { src: "/brand/grabbit-wordmark.svg", w: 1642, h: 456, href: "https://grabbit.co.ke" },
+    shots: [
+      D("/projects/grabbit/landing.jpg", "Grabbit's home page: Post it. They grab it. You get paid."),
+      P("/projects/grabbit/item-phone.jpg", "A Grabbit item page on a phone"),
+      D("/projects/grabbit/signup.jpg", "Grabbit sign-up, with real products behind it"),
+      P("/projects/grabbit/album-phone.jpg", "A seller's Grabbit shop page on a phone"),
+    ],
+  },
+  {
+    slug: "nurulabs",
+    name: "NuruLabs",
+    role: "Creator & engineer",
+    kind: "product",
+    year: "2026",
+    status: "Beta · nurulabs.vercel.app",
+    notice: {
+      title: "In beta: checking every lesson",
+      body: "NuruLabs is open, and in beta while its content engine is validated: every lesson and exercise is being checked so that what's taught is correct and every lab stays hands-on, with learners doing, not just reading. The full launch follows once that check is done.",
+    },
+    pitch: "Free, hands-on AI education for African students, with real Python running in the browser.",
+    problem:
+      "Learning AI usually means long videos, a powerful laptop and a fast connection. NuruLabs is a structured programme where every idea is followed by something you do, on African data, in the browser on any laptop.",
+    built: [
+      "Four tracks, from Python to machine learning",
+      "Labs that mix lessons, interactives, quizzes and real code",
+      "A placement check and a progress dashboard",
+      "Optional sign-in, with progress kept on the device",
+    ],
+    hard: [
+      "Python, NumPy and pandas running in the browser, no install",
+      "Every lab's exercises checked automatically",
+      "Progress that follows a learner from device to account",
+    ],
+    facts: [
+      { value: "4", label: "learning tracks" },
+      { value: "139", label: "hands-on labs" },
+      { value: "1,100+", label: "lessons and exercises" },
+    ],
+    stack: ["Next.js", "TypeScript", "Pyodide", "Supabase", "Tailwind CSS"],
+    links: [
+      { label: "Visit NuruLabs", href: "https://nurulabs.vercel.app", kind: "live" },
+      { label: "Source", href: "https://github.com/Its-Delimas/nurulabs", kind: "github" },
+    ],
+    shots: [
+      D("/projects/nurulabs/landing.jpg", "NuruLabs home page: Africa's AI builders start here"),
+      P("/projects/nurulabs/landing-phone.jpg", "NuruLabs on a phone"),
+      D("/projects/nurulabs/dashboard.jpg", "A learner's NuruLabs dashboard"),
+      D("/projects/nurulabs/lab.jpg", "A NuruLabs lab: Values and Variables"),
+      D("/projects/nurulabs/tracks.jpg", "The four NuruLabs tracks"),
+    ],
+  },
+  {
+    slug: "deck",
+    name: "deck",
+    role: "Personal project",
+    kind: "personal",
+    year: "2026",
+    status: "v0.1.0 · Linux, Windows, macOS",
+    pitch: "A desktop app that shows what's happening on a developer's machine.",
+    problem:
+      "What's using the CPU, what's on port 3000, which services are running: usually six terminal windows. deck puts it in one app.",
+    built: [
+      "Live system charts and one list of what needs attention",
+      "Every open port linked to its process and project",
+      "Services, logs and a terminal in one place",
+    ],
+    hard: [
+      "Light enough to leave open all day",
+      "Hardware details always show their source",
+      "One release builds for three operating systems",
+    ],
+    facts: [
+      { value: "3", label: "operating systems" },
+      { value: "v0.1.0", label: "released" },
+    ],
+    stack: ["Go", "Wails", "React", "TypeScript"],
     links: [
       { label: "Source", href: "https://github.com/Its-Delimas/deck", kind: "github" },
-      { label: "Download v0.1.0", href: "https://github.com/Its-Delimas/deck/releases/latest", kind: "download" },
+      { label: "Download", href: "https://github.com/Its-Delimas/deck/releases/latest", kind: "download" },
     ],
-    icon: MonitorDot,
-    overview:
-      "deck answers the questions you actually have about your development machine in one place. Ports are translated into meaning — 5173 → vite → chromafinity instead of a raw socket table — processes come with their trees and working directories, and pointing it at a repository tracks everything that project started as one unit. Metrics are pushed from Go on a fixed tick and the process and socket tables are read straight from /proc, so leaving it open all day stays cheap.",
-    sections: [
-      {
-        heading: "What it does",
-        items: [
-          "Dashboard — CPU, memory, GPU, disk and network with live charts, per-core load, thermals and one ranked list of anything that needs attention.",
-          "Processes and network — a full process manager with trees, detail and signal control, and every listening socket joined to its owning process and project directory.",
-          "Services, logs and terminal — PostgreSQL, Redis and Docker containers from systemd and Docker with start/stop/restart; journald and container logs streamed live; real PTY sessions.",
-          "Project mode — the processes, ports, git state and scripts of one repository tracked as a single unit, with its total CPU and memory cost.",
-          "This machine and health check — a full hardware inventory plus live measurements: real load on every core with throttling sampled, memory bandwidth, and a 128 MB disk write and read-back.",
-        ],
-      },
-      {
-        heading: "Honest by design",
-        body: "Every value in the hardware inventory shows the /sys path or command it came from, and anything the hardware doesn't report is marked unavailable rather than filled in with a guess. Battery health is the firmware's measured full charge against its design capacity — the kind of thing you want when checking a second-hand machine.",
-      },
-      {
-        heading: "Architecture",
-        body: "A React and TypeScript interface on Wails v2, with Go doing all system access — events flow in, bound methods flow out. Platform-specific code sits behind build tags with Linux as the first-class target, and a tag-triggered release pipeline builds and publishes a .deb, a tarball, a Windows installer and a universal macOS binary.",
-      },
-    ],
-    screenshots: [
-      { src: "/projects/deck/dashboard.jpg", alt: "deck dashboard with live CPU, memory, network and disk charts" },
-      { src: "/projects/deck/processes.jpg", alt: "deck process manager with search, sorting and a detail pane" },
-      { src: "/projects/deck/network.jpg", alt: "deck network view mapping listening ports to processes and projects" },
-      { src: "/projects/deck/about.jpg", alt: "deck hardware inventory with sources and battery health" },
-      { src: "/projects/deck/logs.jpg", alt: "deck streaming the system journal with severities and units" },
+    shots: [
+      { src: "/projects/deck/dashboard.jpg", alt: "deck dashboard with live system charts", w: 1600, h: 868 },
+      { src: "/projects/deck/network.jpg", alt: "deck linking open ports to processes", w: 1600, h: 868 },
+      { src: "/projects/deck/processes.jpg", alt: "deck process manager", w: 1600, h: 868 },
+      { src: "/projects/deck/logs.jpg", alt: "deck streaming system logs", w: 1600, h: 872 },
+      { src: "/projects/deck/about.jpg", alt: "deck hardware details", w: 1600, h: 872 },
     ],
   },
   {
     slug: "heimdall",
-    title: "Heimdall",
-    tagline: "Live request-flow observability for a running microservice stack.",
-    description:
-      "Drop a small SDK into your services and Heimdall draws the live flow of a real request as it happens — which service called which, what shape of data moved, how long it took, and whether it errored.",
-    kind: "Observability platform",
-    platform: "Web dashboard · Node SDK",
-    status: "Working MVP with CI",
+    name: "Heimdall",
+    role: "Personal project",
+    kind: "personal",
     year: "2026",
-    highlights: [
-      "Live WebSocket trace streaming",
-      "MCP server for agent-queryable traces",
-      "Schema inferred from real traffic, not code",
+    status: "Working MVP",
+    pitch: "Watch a real request travel through your microservices, live.",
+    problem:
+      "Finding out what actually calls what across services means reading a lot of code. Heimdall draws the real path of a real request as it happens.",
+    built: [
+      "A small SDK for Node services",
+      "Live traces, replays and a services map",
+      "An MCP server so AI agents can ask about recent requests",
     ],
-    tech: ["TypeScript", "Next.js", "Drizzle ORM", "PostgreSQL"],
+    hard: ["Data shapes shown, values never stored", "Speeds and failures per service"],
+    facts: [{ value: "Live", label: "request tracing" }],
+    stack: ["TypeScript", "Next.js", "PostgreSQL", "WebSockets"],
     links: [{ label: "Source", href: "https://github.com/Its-Delimas/heimdall", kind: "github" }],
-    icon: Waypoints,
-    overview:
-      "A tool like a dependency graph or an IaC diagram shows what your code could call. Heimdall shows what it actually called, on a real request, just now — real hop count, real duration, real success/failure, real (shape-only, never values) payload keys. It's built for the moment right after wiring up a multi-service flow, so instead of reading three files to reconstruct what talks to what, you watch it happen.",
-    sections: [
-      {
-        heading: "Pieces",
-        items: [
-          "SDK — Express middleware for inbound requests, traceFetch for outbound HTTP, traceQuery/span for DB calls, propagating one traceId across service boundaries.",
-          "Server (collector) — ingests span events over HTTP, holds recent traces in memory per project, streams them live over WebSocket. Also an MCP server with seven read-only tools so an agent can ask what happened on the last request.",
-          "DB — Postgres schema (Drizzle) for identity: users, sessions, organizations, projects, API keys. Trace data itself stays in-memory on the collector.",
-          "Web — Next.js dashboard: live trace list, a flow diagram with click-for-payload-shape, a replay view, a cumulative services map, schema inferred from observed traffic, and analytics (p50/p95/p99 latency, per-service reliability).",
-        ],
-      },
-      {
-        heading: "Why it's different",
-        body: "A static architecture diagram shows what your code could call. Heimdall shows what it actually called, on a real request, just now — including whether that hop errored and how long it took.",
-      },
-    ],
-    screenshots: [
-      { src: "/projects/heimdall/flow.jpg", alt: "Heimdall flow diagram of a real request across checkout, inventory, and payments services" },
-      { src: "/projects/heimdall/overview.jpg", alt: "Heimdall overview dashboard showing trace count, error rate, and recent activity" },
-      { src: "/projects/heimdall/landing.jpg", alt: "Heimdall landing page with an animated live request-flow demo" },
-      { src: "/projects/heimdall/services.jpg", alt: "Heimdall cumulative services map across the whole observed system" },
-      { src: "/projects/heimdall/schema.jpg", alt: "Heimdall database schema inferred from observed traffic" },
-    ],
-  },
-  {
-    slug: "grabit",
-    title: "Grabit",
-    tagline: "Turn a product posted on social media into a link people can pay for.",
-    description:
-      "The transaction layer that sits between \"I want this\" (seen on WhatsApp / Instagram / TikTok) and \"I bought this\" — the social network stays the discovery layer, Grabit handles checkout and delivery.",
-    kind: "Social commerce",
-    platform: "Web · mobile-first",
-    status: "MVP",
-    year: "2026",
-    highlights: [
-      "Domain-driven layered architecture",
-      "Kenyan phone + delivery-zone pricing",
-      "Paystack (M-Pesa/card) checkout",
-    ],
-    tech: ["Next.js", "TypeScript", "Prisma", "Paystack"],
-    links: [{ label: "Source", href: "https://github.com/Its-Delimas/grabit.co.ke", kind: "github" }],
-    icon: Rabbit,
-    overview:
-      "A seller posts a product, gets a shareable link and caption, and a buyer who lands on that link can pick a size, choose a delivery zone, see the full price breakdown, and pay — by M-Pesa or card via Paystack — without ever leaving the flow. The seller tracks every order from a dashboard, from paid through delivered.",
-    sections: [
-      {
-        heading: "How it works",
-        items: [
-          "Seller adds a product (name, price, photo, sizes) and publishes it — gets a shareable link and a ready-to-post caption.",
-          "Buyer opens the link, picks a size and delivery zone, and sees the full price breakdown before paying.",
-          "Checkout runs through Paystack (M-Pesa or card), with a mock provider available for local development.",
-          "The seller's dashboard shows the order moving through its status — paid, packed, delivered — by order number.",
-        ],
-      },
-      {
-        heading: "Architecture",
-        body: "Layered so business rules don't depend on Next.js: a framework-free domain layer (order status state machine, delivery-zone pricing, Kenyan phone-number normalization) underneath application use-cases (create-product, create-order, handle-payment-callback) and an infrastructure layer (Prisma, Auth.js, a swappable payment-provider abstraction, Cloudinary).",
-      },
-    ],
-    screenshots: [
-      { src: "/projects/grabit/landing.jpg", alt: "Grabit landing page — your social media is already your store" },
-      { src: "/projects/grabit/product.jpg", alt: "Grabit buyer product page with colour and delivery options" },
-      { src: "/projects/grabit/payment.jpg", alt: "Grabit payment method selector, secured by Paystack" },
-      { src: "/projects/grabit/confirmation.jpg", alt: "Grabit order confirmation screen after a successful payment" },
-      { src: "/projects/grabit/dashboard.jpg", alt: "Grabit seller dashboard with sales, orders, and a ready-to-post product card" },
+    shots: [
+      { src: "/projects/heimdall/flow.jpg", alt: "Heimdall drawing a request across services", w: 1568, h: 706 },
+      { src: "/projects/heimdall/overview.jpg", alt: "Heimdall overview", w: 1568, h: 706 },
+      { src: "/projects/heimdall/services.jpg", alt: "Heimdall services map", w: 1568, h: 706 },
+      { src: "/projects/heimdall/schema.jpg", alt: "Heimdall inferred schema", w: 1568, h: 706 },
     ],
   },
 ];
+
+export const products = projects.filter((p) => p.kind === "product");
+export const personal = projects.filter((p) => p.kind === "personal");
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

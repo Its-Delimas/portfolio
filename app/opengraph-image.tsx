@@ -1,64 +1,35 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Spencer Delimas — full-stack & cloud engineer";
+export const alt = "Spencer Delimas, founder of Grabbit and software engineer in Nairobi";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+/** The link preview: the name, the role, and the projects. */
+export default async function OpengraphImage() {
+  const baloo = await readFile(join(process.cwd(), "app/fonts/baloo-2-800.ttf"));
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
-          background: "#0a0b0d",
-          color: "#f2f3f5",
-          fontFamily: "sans-serif",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 24, color: "#8b929b" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 48,
-              height: 48,
-              border: "1px solid #23262b",
-              borderRadius: 10,
-              background: "#111318",
-              color: "#f2f3f5",
-              fontSize: 20,
-            }}
-          >
-            SD
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#121117", color: "#fafafa", padding: 72 }}>
+        <div style={{ display: "flex" }}>
+          <div style={{ background: "#ff6b3d", color: "#121117", borderRadius: 999, padding: "10px 26px", fontSize: 30, fontFamily: "Baloo" }}>
+            Founder of Grabbit
           </div>
-          spencerdelimas.vercel.app
         </div>
-
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 108, fontWeight: 700, letterSpacing: -4, lineHeight: 1 }}>
-            Spencer Delimas<span style={{ color: "#3b82f6" }}>.</span>
-          </div>
-          <div style={{ display: "flex", marginTop: 28, fontSize: 38, color: "#c9ccd1" }}>
-            Full-stack &amp; cloud engineer building reliable systems.
-          </div>
+          <div style={{ fontFamily: "Baloo", fontSize: 140, lineHeight: 0.9 }}>Spencer Delimas</div>
+          <div style={{ marginTop: 24, fontSize: 36, color: "#a3a3a3" }}>Software engineer · Nairobi, Kenya</div>
         </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 28, fontSize: 24, color: "#8b929b" }}>
-          <div style={{ display: "flex", width: 56, height: 4, background: "#3b82f6" }} />
-          <span>deck</span>
-          <span>·</span>
-          <span>Heimdall</span>
-          <span>·</span>
-          <span>Grabit</span>
+        <div style={{ display: "flex", gap: 18, fontSize: 30 }}>
+          {["Grabbit", "NuruLabs", "deck", "Heimdall"].map((p, i) => (
+            <div key={p} style={{ border: "2px solid #2a2833", borderRadius: 999, padding: "8px 24px", color: i === 0 ? "#8c9bff" : "#fafafa" }}>
+              {p}
+            </div>
+          ))}
         </div>
       </div>
     ),
-    size
+    { ...size, fonts: [{ name: "Baloo", data: baloo, weight: 800 }] },
   );
 }
