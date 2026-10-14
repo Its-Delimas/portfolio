@@ -10,8 +10,8 @@ const PERSON = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Spencer Delimas",
-  url: "https://spencerdelimas.vercel.app",
-  image: "https://spencerdelimas.vercel.app/opengraph-image",
+  url: SITE,
+  image: `${SITE}/opengraph-image`,
   jobTitle: "Software Engineer",
   description: "Founder of Grabbit and a software engineer in Nairobi, Kenya, building full products end to end.",
   email: "mailto:spencerdelimas@gmail.com",
@@ -22,6 +22,7 @@ const PERSON = {
   knowsAbout: ["TypeScript", "Next.js", "React", "Node.js", "Go", "PostgreSQL", "M-Pesa payments", "Linux", "AWS", "Cloud deployment"],
 };
 import { buttonClass, Chip, cn, EMAIL, Eyebrow, Footer, GITHUB, LINKEDIN, Nav, WRAP } from "@/components/ui";
+import { SITE } from "@/lib/site";
 
 /** The hero's wall: real screens from the real products. */
 const WALL = [

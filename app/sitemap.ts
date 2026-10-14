@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
+import { SITE } from "@/lib/site";
 
-const BASE = "https://spencerdelimas.vercel.app";
+const BASE = SITE;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
