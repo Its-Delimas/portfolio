@@ -16,8 +16,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getProject((await params).slug);
   if (!p) return { title: "Not found" };
   return {
-    title: `${p.name} · Spencer Delimas`,
-    description: p.pitch,
+    title: `${p.name}: case study · Spencer Delimas`,
+    description: `${p.pitch} ${p.role} Spencer Delimas, software engineer in Nairobi.`,
+    alternates: { canonical: `/projects/${p.slug}` },
     openGraph: { title: `${p.name} · Spencer Delimas`, description: p.pitch, images: [p.shots[0].src] },
   };
 }

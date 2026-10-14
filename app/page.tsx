@@ -4,6 +4,23 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { personal, products } from "@/lib/projects";
 import { PersonalCard, Showcase } from "@/components/showcase";
 import { GithubStats } from "@/components/github-stats";
+
+/** Who this page is about, in the form search engines read. */
+const PERSON = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Spencer Delimas",
+  url: "https://spencerdelimas.vercel.app",
+  image: "https://spencerdelimas.vercel.app/opengraph-image",
+  jobTitle: "Software Engineer",
+  description: "Founder of Grabbit and a software engineer in Nairobi, Kenya, building full products end to end.",
+  email: "mailto:spencerdelimas@gmail.com",
+  address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Dedan Kimathi University of Technology" },
+  founder: { "@type": "Organization", name: "Grabbit", url: "https://grabbit.co.ke" },
+  sameAs: ["https://github.com/Its-Delimas", "https://www.linkedin.com/in/spencer-delimas/", "https://grabbit.co.ke"],
+  knowsAbout: ["TypeScript", "Next.js", "React", "Node.js", "Go", "PostgreSQL", "M-Pesa payments", "Linux", "AWS", "Cloud deployment"],
+};
 import { buttonClass, Chip, cn, EMAIL, Eyebrow, Footer, GITHUB, LINKEDIN, Nav, WRAP } from "@/components/ui";
 
 /** The hero's wall: real screens from the real products. */
@@ -103,6 +120,7 @@ const SKILLS: [string, string[]][] = [
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON) }} />
       <Nav />
       <main>
         {/* Hero: who, in one line, over a wall of the real work */}
