@@ -1,67 +1,39 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import MotionProvider from "@/components/MotionProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+/** Baloo 2, the face Grabbit is set in: headlines and big numbers. */
+const display = localFont({
+  src: [{ path: "./fonts/baloo2-var.woff2", weight: "400 800", style: "normal" }],
+  variable: "--font-display-src",
+  display: "swap",
 });
 
 const description =
-  "Spencer Delimas — full-stack & cloud engineer in Kenya building reliable systems, from web apps to the machines they run on. Case studies: deck, Heimdall, Grabit.";
+  "Spencer Delimas, founder of Grabbit and a software engineer in Nairobi. I build complete products: Grabbit (M-Pesa checkout for social sellers, live), NuruLabs (AI education with Python in the browser) and deck (a native developer tool).";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spencerdelimas.vercel.app"),
-  title: "Spencer Delimas | Full Stack & Cloud Engineer",
+  title: "Spencer Delimas · Founder of Grabbit · Software Engineer",
   description,
+  keywords: ["Spencer Delimas", "Grabbit", "NuruLabs", "software engineer Kenya", "full-stack developer Nairobi", "M-Pesa integration"],
   openGraph: {
     type: "website",
     url: "/",
     siteName: "Spencer Delimas",
-    title: "Spencer Delimas | Full Stack & Cloud Engineer",
+    title: "Spencer Delimas · Founder of Grabbit · Software Engineer",
     description,
+    locale: "en_KE",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Spencer Delimas | Full Stack & Cloud Engineer",
-    description,
-  },
+  twitter: { card: "summary_large_image", title: "Spencer Delimas · Founder of Grabbit", description },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { themeColor: "#0a0a0a", width: "device-width", initialScale: 1 };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}`,
-          }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col">
-        <div className="bg-grid" aria-hidden="true" />
-        <MotionProvider>
-          <Navbar />
-          <main className="min-w-0">{children}</main>
-          <Footer />
-        </MotionProvider>
-      </body>
+    <html lang="en-KE" className={display.variable}>
+      <body className="min-h-dvh">{children}</body>
     </html>
   );
 }

@@ -1,127 +1,75 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/*
+  Grabbit's design language, carried over: white and near-black grounds, one
+  green that means "go", amber at most once per screen as a "look here", crisp
+  edges, Baloo 2 for display type and the system stack for reading.
+*/
 
-:root {
-  --background: #fafaf9;
-  --surface: #ffffff;
-  --surface-hover: #f3f4f6;
-  --foreground: #14161a;
-  --muted: #62666d;
-  --border: #e5e5e3;
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-foreground: #ffffff;
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f5f5;
+  --color-fg: #0a0a0a;
+  --color-muted: #525252;
+  --color-subtle: #737373;
+  --color-border: #e5e5e5;
+  --color-border-strong: #d4d4d4;
+  --color-fill: color-mix(in oklab, var(--color-fg) 5%, transparent);
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-}
+  --color-ink: #0a0a0a;
+  --color-ink-fg: #fafafa;
+  --color-ink-muted: #a3a3a3;
+  --color-ink-line: #262626;
 
-:root[data-theme="dark"] {
-  --background: #0a0b0d;
-  --surface: #111318;
-  --surface-hover: #161a20;
-  --foreground: #f2f3f5;
-  --muted: #8b929b;
-  --border: #23262b;
-  --accent: #3b82f6;
-  --accent-strong: #60a5fa;
-  --accent-foreground: #ffffff;
-}
+  --color-brand: #12873f;
+  --color-brand-strong: #0d6b31;
+  --color-brand-bright: #2fd071;
+  --color-brand-fg: #ffffff;
+  --color-brand-tint: #eaf6ee;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
-  --color-accent: var(--accent);
-  --color-accent-strong: var(--accent-strong);
-  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: #ffb000;
+  --color-accent-ink: #0a0a0a;
+  --color-accent-tint: #fff3d1;
+  --color-accent-fg: #8a5600;
 
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-brand: var(--font-display-src), "Baloo 2", ui-rounded, system-ui, sans-serif;
 
-* {
-  scroll-behavior: smooth;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-pop: 0 18px 40px -16px rgba(0, 0, 0, 0.35);
+  --shadow-key: inset 0 -3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg);
+  color: var(--color-fg);
   font-family: var(--font-sans);
-  position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, var(--border) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 64px 64px;
-  opacity: 0.12;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-@keyframes node-pulse {
-  0%, 100% { opacity: 0.9; r: 5; }
-  50% { opacity: 0.4; r: 7; }
-}
-
-.node-pulse {
-  animation: node-pulse 3.5s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-@keyframes cursor-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: cursor-blink 1s step-end infinite;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.marquee-track {
-  animation: marquee 45s linear infinite;
-}
-
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto;
-  }
-
-  .marquee-track,
-  .cursor-blink,
-  .node-pulse {
-    animation: none;
-  }
+.no-scrollbar {
+  scrollbar-width: none;
 }
