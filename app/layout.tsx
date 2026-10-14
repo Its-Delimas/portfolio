@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-/** Baloo 2, the face Grabbit is set in: headlines and big numbers. */
+/** Baloo 2 for headlines and big numbers. */
 const display = localFont({
   src: [{ path: "./fonts/baloo2-var.woff2", weight: "400 800", style: "normal" }],
   variable: "--font-display-src",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Spencer Delimas · Founder of Grabbit", description },
 };
 
-export const viewport: Viewport = { themeColor: "#0a0a0a", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#121117", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

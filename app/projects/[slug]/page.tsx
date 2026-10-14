@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: Props) {
       <Nav />
       <main>
         <section className="bg-ink text-ink-fg">
-          <div className={cn(WRAP, "py-16 lg:py-24")}>
+          <div className={cn(WRAP, "pb-16 pt-28 lg:pb-24 lg:pt-36")}>
             <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-white">
               <ArrowLeft className="h-4 w-4" /> All work
             </Link>
@@ -77,7 +77,7 @@ export default async function ProjectPage({ params }: Props) {
               </ul>
             </div>
             <div>
-              <Eyebrow>The hard parts</Eyebrow>
+              <Eyebrow>What makes it work</Eyebrow>
               <ul className="mt-3 space-y-3">
                 {p.hard.map((h) => (
                   <li key={h} className="border-l-2 border-brand pl-3 text-[15px] leading-relaxed text-muted">

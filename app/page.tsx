@@ -12,7 +12,7 @@ const WALL = [
   ["/projects/deck/dashboard.jpg", 1600, 868],
   ["/projects/grabbit/item-phone.jpg", 780, 1688],
   ["/projects/nurulabs/landing.jpg", 2880, 1800],
-  ["/projects/grabbit/bills-crop.jpg", 1620, 1650],
+  ["/projects/grabbit/signup.jpg", 2880, 1800],
   ["/projects/heimdall/flow.jpg", 1568, 706],
   ["/projects/grabbit/album-phone.jpg", 780, 1688],
   ["/projects/nurulabs/tracks.jpg", 2880, 1800],
@@ -21,19 +21,19 @@ const WALL = [
 const HOW = [
   {
     title: "AI tools, used with judgement",
-    body: "I build with AI coding assistants like Claude Code every day. They draft; I set the direction, read every change, and own what ships. It's how one person took Grabbit from an idea to live M‑Pesa payments, seller dashboards and an admin control room in about a month.",
+    body: "Claude Code every day: it drafts, I direct, review every change and own what ships. Grabbit went from idea to live payments in about a month.",
   },
   {
     title: "Team habits, even working alone",
-    body: "Branches, pull requests with written descriptions, automated checks before anything merges, and changes shown for review before they ship. The way a company's engineering team works, so I can slot into one.",
+    body: "Branches, pull requests, automated checks and review before anything ships: how engineering teams work.",
   },
   {
     title: "Careful where money moves",
-    body: "Payments are confirmed twice before an order counts as paid, every callback is handled exactly once, and the rules that touch money are covered by automated tests that run on every change.",
+    body: "Anything that touches money is tested, and checked before it counts.",
   },
   {
     title: "Built for the people using it",
-    body: "Every screen is checked on a phone and a laptop before it ships, and the words people read get the same care as the code. Most of Grabbit's sellers will only ever see it on a phone.",
+    body: "Every screen checked on a phone and a laptop, and the words get the same care as the code.",
   },
 ];
 
@@ -42,25 +42,25 @@ const EXPERIENCE = [
     when: "Sep 2026 – now",
     what: "Founder & engineer",
     where: "Grabbit · Nairobi",
-    body: "Started Grabbit and took it from an idea to a live product taking real M‑Pesa payments: the product, the design, all of the engineering, the payment partner integration with PayHero, pricing, and the terms sellers sign up to.",
+    body: "Started Grabbit and took it to live M‑Pesa payments: product, design, engineering and the payment partnership.",
   },
   {
     when: "Feb 2026 – now",
     what: "Creator & engineer",
     where: "NuruLabs",
-    body: "Designed and built a free AI programme for African students: four tracks, 139 labs, and Python that runs in the browser so any laptop will do.",
+    body: "A free AI programme for African students: four tracks, 139 labs, Python in the browser.",
   },
   {
     when: "2026",
     what: "Personal projects",
     where: "deck · Heimdall",
-    body: "A native developer tool released for three operating systems, and a live request-tracing platform for microservices with an MCP server for AI agents.",
+    body: "A desktop developer tool for three operating systems, and live request tracing for microservices.",
   },
   {
     when: "Jul 2024 – now",
     what: "BSc Information Technology",
     where: "Dedan Kimathi University of Technology",
-    body: "Third year. Systems and networks, software engineering, databases. Expected to graduate late 2027 / early 2028.",
+    body: "Third year. Graduating late 2027 / early 2028.",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function Home() {
           </div>
           <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-ink from-35% via-ink/85 via-55% to-ink/20 lg:block" />
 
-          <div className={cn(WRAP, "relative py-20 sm:py-28 lg:py-36")}>
+          <div className={cn(WRAP, "relative pb-20 pt-32 sm:pb-28 sm:pt-40 lg:pb-36 lg:pt-48")}>
             <div className="max-w-3xl">
               <a
                 href="https://grabbit.co.ke"
@@ -106,9 +106,8 @@ export default function Home() {
                 Delimas<span className="text-brand-bright">.</span>
               </h1>
               <p className="mt-7 max-w-2xl text-xl leading-snug text-ink-fg/90 sm:text-2xl">
-                Software engineer in Nairobi. I build whole products, from the payment rails to the screens people
-                use. Right now that’s <span className="font-semibold text-white">Grabbit</span>, which puts an
-                M‑Pesa checkout behind anything a seller posts.
+                Software engineer in Nairobi. I build whole products, end to end. Right now that’s{" "}
+                <span className="font-semibold text-white">Grabbit</span>.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a href="#work" className={buttonClass("primary", "lg")}>

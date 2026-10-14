@@ -1,37 +1,38 @@
 @import "tailwindcss";
 
 /*
-  Grabbit's design language, carried over: white and near-black grounds, one
-  green that means "go", amber at most once per screen as a "look here", crisp
-  edges, Baloo 2 for display type and the system stack for reading.
+  Grabbit's design approach in its own colours: a warm paper ground and
+  near-black panels, one cobalt that means "go", coral at most once per screen
+  as a "look here", crisp edges, Baloo 2 for display type and the system stack
+  for reading. Grabbit's green appears only in its own screenshots.
 */
 
 @theme {
-  --color-bg: #ffffff;
+  --color-bg: #f7f5f0;
   --color-surface: #ffffff;
-  --color-surface-2: #f5f5f5;
-  --color-fg: #0a0a0a;
-  --color-muted: #525252;
-  --color-subtle: #737373;
-  --color-border: #e5e5e5;
-  --color-border-strong: #d4d4d4;
+  --color-surface-2: #efebe2;
+  --color-fg: #121117;
+  --color-muted: #57534e;
+  --color-subtle: #78716c;
+  --color-border: #e4ded2;
+  --color-border-strong: #d3cbbd;
   --color-fill: color-mix(in oklab, var(--color-fg) 5%, transparent);
 
-  --color-ink: #0a0a0a;
+  --color-ink: #121117;
   --color-ink-fg: #fafafa;
   --color-ink-muted: #a3a3a3;
-  --color-ink-line: #262626;
+  --color-ink-line: #2a2833;
 
-  --color-brand: #12873f;
-  --color-brand-strong: #0d6b31;
-  --color-brand-bright: #2fd071;
+  --color-brand: #2f45ff;
+  --color-brand-strong: #1f31d1;
+  --color-brand-bright: #8c9bff;
   --color-brand-fg: #ffffff;
-  --color-brand-tint: #eaf6ee;
+  --color-brand-tint: #e9ebff;
 
-  --color-accent: #ffb000;
-  --color-accent-ink: #0a0a0a;
-  --color-accent-tint: #fff3d1;
-  --color-accent-fg: #8a5600;
+  --color-accent: #ff6b3d;
+  --color-accent-ink: #121117;
+  --color-accent-tint: #ffe6dc;
+  --color-accent-fg: #b13a12;
 
   --radius-2xl: 1rem;
   --radius-3xl: 1.25rem;

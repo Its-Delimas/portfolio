@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import type { ProjectLink } from "@/lib/projects";
@@ -69,26 +68,7 @@ export function Chip({ children, tone = "plain" }: { children: React.ReactNode; 
   );
 }
 
-export function Nav() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur">
-      <div className={cn(WRAP, "flex h-16 items-center gap-6")}>
-        <Link href="/" className="font-brand text-xl font-extrabold leading-none">
-          Spencer Delimas
-        </Link>
-        <nav className="ml-auto hidden items-center gap-7 text-sm font-medium text-muted md:flex">
-          <Link href="/#work" className="hover:text-fg">Work</Link>
-          <Link href="/#how" className="hover:text-fg">How I work</Link>
-          <Link href="/#experience" className="hover:text-fg">Experience</Link>
-          <Link href="/#contact" className="hover:text-fg">Contact</Link>
-        </nav>
-        <a href={`mailto:${EMAIL}`} className={cn(buttonClass("primary"), "ml-auto h-10 md:ml-0")}>
-          Email me
-        </a>
-      </div>
-    </header>
-  );
-}
+export { Nav } from "./nav";
 
 export function Footer() {
   return (
