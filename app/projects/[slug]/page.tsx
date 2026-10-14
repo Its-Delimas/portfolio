@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: Props) {
               <Chip tone="brand">{p.role}</Chip>
               <span className="text-sm text-ink-muted">{p.status}</span>
             </div>
-            <h1 className="mt-4 font-brand text-7xl font-extrabold leading-[0.88] sm:text-8xl xl:text-9xl">{p.name}</h1>
+            <h1 className="mt-4 break-words font-brand text-6xl font-extrabold leading-[0.88] sm:text-8xl xl:text-9xl">{p.name}</h1>
             <p className="mt-6 max-w-3xl text-2xl leading-snug text-ink-fg/90">{p.pitch}</p>
             <div className="mt-8">
               <ProjectLinks links={p.links} onInk />
@@ -52,6 +52,15 @@ export default async function ProjectPage({ params }: Props) {
         </section>
 
         <section className={cn(WRAP, "py-16 lg:py-20")}>
+          {p.notice ? (
+            <div className="mb-12 flex flex-col gap-2 rounded-3xl bg-accent-tint p-5 sm:flex-row sm:items-start sm:gap-4 sm:p-6">
+              <span className="w-fit flex-none rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-ink">Beta</span>
+              <div>
+                <p className="font-brand text-xl font-bold leading-tight">{p.notice.title}</p>
+                <p className="mt-1 max-w-3xl text-[15px] leading-relaxed text-muted">{p.notice.body}</p>
+              </div>
+            </div>
+          ) : null}
           <div className="grid gap-10 lg:grid-cols-3 lg:gap-14">
             <div>
               <Eyebrow>The problem</Eyebrow>

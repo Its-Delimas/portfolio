@@ -26,8 +26,8 @@ export function Nav({ overInk = true }: { overInk?: boolean }) {
         dark ? "border-b border-transparent text-white" : "border-b border-border bg-bg/85 text-fg backdrop-blur",
       )}
     >
-      <div className={cn(WRAP, "flex h-16 items-center gap-6")}>
-        <Link href="/" className="font-brand text-xl font-extrabold leading-none">
+      <div className={cn(WRAP, "flex h-16 items-center gap-3 sm:gap-6")}>
+        <Link href="/" className="min-w-0 truncate font-brand text-lg font-extrabold leading-none sm:text-xl">
           Spencer Delimas
         </Link>
         <nav
@@ -45,7 +45,7 @@ export function Nav({ overInk = true }: { overInk?: boolean }) {
           href={`mailto:${EMAIL}`}
           className={cn(
             buttonClass(dark ? "ghost-ink" : "primary"),
-            "ml-auto h-10 md:ml-0",
+            "ml-auto h-9 flex-none px-3.5 text-xs sm:h-10 sm:px-5 sm:text-sm md:ml-0",
           )}
         >
           Email me

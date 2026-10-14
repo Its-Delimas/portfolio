@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Cloud, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { personal, products } from "@/lib/projects";
 import { PersonalCard, Showcase } from "@/components/showcase";
+import { GithubStats } from "@/components/github-stats";
 import { buttonClass, Chip, cn, EMAIL, Eyebrow, Footer, GITHUB, LINKEDIN, Nav, WRAP } from "@/components/ui";
 
 /** The hero's wall: real screens from the real products. */
@@ -32,6 +33,14 @@ const HOW = [
     body: "Anything that touches money is tested, and checked before it counts.",
   },
   {
+    title: "If I don’t know it, I find a way",
+    body: "I started with HTML in Form 1 and haven’t stopped since. Most of what’s on this page began as something I didn’t know how to do yet: I learn it, then ship it.",
+  },
+  {
+    title: "At home on Linux, and with IT",
+    body: "Linux has been my daily system for over two years, with Cisco’s Linux Essentials and IT Essentials behind it, so I can help with the hardware, networks and IT tasks around the code too.",
+  },
+  {
     title: "Built for the people using it",
     body: "Every screen checked on a phone and a laptop, and the words get the same care as the code.",
   },
@@ -57,10 +66,28 @@ const EXPERIENCE = [
     body: "A desktop developer tool for three operating systems, and live request tracing for microservices.",
   },
   {
+    when: "In progress",
+    what: "AWS Solutions Architect",
+    where: "Amazon Web Services certification",
+    body: "Designing secure, reliable cloud deployments on AWS.",
+  },
+  {
+    when: "Jul – Sep 2026",
+    what: "Linux Essentials",
+    where: "Cisco Networking Academy",
+    body: "The command line, files and permissions, users, processes and system basics.",
+  },
+  {
+    when: "Completed",
+    what: "IT Essentials",
+    where: "Cisco Networking Academy",
+    body: "PC hardware, operating systems, networking and troubleshooting.",
+  },
+  {
     when: "Jul 2024 – now",
     what: "BSc Information Technology",
     where: "Dedan Kimathi University of Technology",
-    body: "Third year. Graduating late 2027 / early 2028.",
+    body: "Third year. Graduating late 2027 or early 2028, give or take a strike: Kenyan universities strike most Octobers, so it might as well be a public holiday. I spend those weeks building.",
   },
 ];
 
@@ -68,7 +95,8 @@ const SKILLS: [string, string[]][] = [
   ["Product & frontend", ["TypeScript", "React", "Next.js", "Tailwind CSS", "Accessibility", "Installable web apps"]],
   ["Backend & data", ["Node.js", "Go", "PostgreSQL", "Prisma", "Drizzle", "Supabase", "REST & webhooks"]],
   ["Payments", ["M‑Pesa (STK push)", "PayHero API", "Idempotent callbacks", "Reconciliation & billing"]],
-  ["Cloud & tooling", ["Vercel", "Neon", "Docker", "Linux", "GitHub Actions", "AWS"]],
+  ["Cloud & tooling", ["AWS (in progress)", "Vercel", "Neon", "Docker", "GitHub Actions"]],
+  ["Linux & IT", ["Linux, 2+ years daily", "Shell & systemd", "Hardware & OS troubleshooting", "Networking basics", "Cisco Linux Essentials", "Cisco IT Essentials"]],
   ["AI", ["Claude Code", "MCP servers", "Pyodide", "Python"]],
 ];
 
@@ -119,21 +147,19 @@ export default function Home() {
               </div>
             </div>
 
-            <dl className="mt-16 grid max-w-4xl grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-line pt-8 sm:grid-cols-4">
-              {[
-                ["Live", "Grabbit, taking real M‑Pesa payments"],
-                ["139", "hands-on labs on NuruLabs"],
-                ["3", "operating systems deck ships for"],
-                ["140+", "automated tests guarding Grabbit’s payments"],
-              ].map(([v, l]) => (
-                <div key={l}>
-                  <dd className="font-brand text-4xl font-extrabold leading-none text-white sm:text-5xl">{v}</dd>
-                  <dt className="mt-2 text-sm leading-snug text-ink-muted">{l}</dt>
-                </div>
-              ))}
-            </dl>
+            {/* what's next, in one line */}
+            <p className="mt-14 flex max-w-2xl items-start gap-3 border-t border-ink-line pt-7 text-ink-fg/90">
+              <Cloud className="mt-0.5 h-5 w-5 flex-none text-brand-bright" />
+              <span>
+                <span className="font-semibold text-white">Currently:</span> working towards the AWS Solutions
+                Architect certification, to design and run cloud deployments properly.
+              </span>
+            </p>
           </div>
         </section>
+
+        {/* Public GitHub activity, live */}
+        <GithubStats />
 
         {/* Work */}
         <div id="work" className="scroll-mt-16">
@@ -172,7 +198,7 @@ export default function Home() {
                 Fast, and careful where it counts.
               </h2>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2">
               {HOW.map((h, i) => (
                 <div key={h.title} className="rounded-3xl border border-border p-6 sm:p-7">
                   <span className="font-brand text-sm font-bold text-brand">0{i + 1}</span>
@@ -231,10 +257,10 @@ export default function Home() {
 
         {/* Contact: the one amber block */}
         <section id="contact" className="bg-accent text-accent-ink">
-          <div className={cn(WRAP, "grid items-end gap-10 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:py-28")}>
+          <div className={cn(WRAP, "grid grid-cols-[minmax(0,1fr)] items-end gap-10 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:py-28")}>
             <div>
               <Eyebrow className="text-accent-ink/70">Contact</Eyebrow>
-              <h2 className="mt-3 text-balance font-brand text-5xl font-extrabold leading-[0.92] sm:text-7xl">
+              <h2 className="mt-3 text-balance font-brand text-[2.5rem] font-extrabold leading-[0.95] sm:text-7xl">
                 Hiring, or building something? Let’s talk.
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-snug text-accent-ink/80">
@@ -242,8 +268,8 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <a href={`mailto:${EMAIL}`} className={cn(buttonClass("ink", "lg"), "w-full justify-between px-6")}>
-                <span className="flex items-center gap-2">
+              <a href={`mailto:${EMAIL}`} className={cn(buttonClass("ink", "lg"), "w-full justify-between px-4 sm:px-6")}>
+                <span className="flex min-w-0 items-center gap-2 truncate">
                   <Mail className="h-5 w-5" /> {EMAIL}
                 </span>
                 <ArrowUpRight className="h-5 w-5" />

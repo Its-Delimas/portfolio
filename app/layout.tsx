@@ -32,7 +32,7 @@ export const viewport: Viewport = { themeColor: "#121117", width: "device-width"
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-KE" className={display.variable}>
+    <html lang="en-KE" data-scroll-behavior="smooth" className={display.variable}>
       <body className="min-h-dvh">{children}</body>
     </html>
   );

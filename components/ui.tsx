@@ -77,7 +77,7 @@ export function Footer() {
         <p>
           <span className="font-brand text-base font-bold text-white">Spencer Delimas</span> · Nairobi, Kenya
         </p>
-        <div className="flex gap-5">
+        <div className="flex flex-wrap gap-x-5 gap-y-1">
           <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
           <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a>
           <a href={`mailto:${EMAIL}`} className="hover:text-white">{EMAIL}</a>

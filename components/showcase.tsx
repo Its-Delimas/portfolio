@@ -67,6 +67,7 @@ export function Showcase({ project, index, flip }: { project: Project; index: nu
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-brand text-sm font-bold text-subtle">0{index}</span>
             <Chip tone="brand">{project.role}</Chip>
+            {project.status.startsWith("Beta") ? <Chip tone="ink">Beta</Chip> : null}
           </div>
           <h2 className="mt-3 font-brand text-6xl font-extrabold leading-[0.9] sm:text-7xl xl:text-8xl">{project.name}</h2>
           <p className="mt-4 max-w-xl text-xl leading-snug sm:text-2xl">{project.pitch}</p>
@@ -90,6 +91,18 @@ export function Showcase({ project, index, flip }: { project: Project; index: nu
             </Link>
             <ProjectLinks links={project.links.filter((l) => l.kind === "live")} />
           </div>
+
+          {project.logo ? (
+            <a
+              href={project.logo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.name}, open the live site`}
+              className="mt-6 inline-block transition-opacity hover:opacity-75"
+            >
+              <Image src={project.logo.src} alt={`${project.name} wordmark`} width={project.logo.w} height={project.logo.h} unoptimized className="h-8 w-auto" />
+            </a>
+          ) : null}
         </div>
 
         <div className="min-w-0">

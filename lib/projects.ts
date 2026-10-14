@@ -28,6 +28,10 @@ export type Project = {
   hard: string[];
   /** Small true numbers. */
   facts: { value: string; label: string }[];
+  /** The product's own wordmark, linking to it. */
+  logo?: { src: string; w: number; h: number; href: string };
+  /** A note shown on the project's page, e.g. what a beta is checking. */
+  notice?: { title: string; body: string };
   stack: string[];
   links: ProjectLink[];
   /** First is the main laptop screen; the first phone shot is shown on phones. */
@@ -68,6 +72,7 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "M‑Pesa", "Vercel"],
     links: [{ label: "Visit grabbit.co.ke", href: "https://grabbit.co.ke", kind: "live" }],
+    logo: { src: "/brand/grabbit-wordmark.svg", w: 1642, h: 456, href: "https://grabbit.co.ke" },
     shots: [
       D("/projects/grabbit/landing.jpg", "Grabbit's home page: Post it. They grab it. You get paid."),
       P("/projects/grabbit/item-phone.jpg", "A Grabbit item page on a phone"),
@@ -81,7 +86,11 @@ export const projects: Project[] = [
     role: "Creator & engineer",
     kind: "product",
     year: "2026",
-    status: "Live at nurulabs.vercel.app",
+    status: "Beta · nurulabs.vercel.app",
+    notice: {
+      title: "In beta: checking every lesson",
+      body: "NuruLabs is open, and in beta while its content engine is validated: every lesson and exercise is being checked so that what's taught is correct and every lab stays hands-on, with learners doing, not just reading. The full launch follows once that check is done.",
+    },
     pitch: "Free, hands-on AI education for African students, with real Python running in the browser.",
     problem:
       "Learning AI usually means long videos, a powerful laptop and a fast connection. NuruLabs is a structured programme where every idea is followed by something you do, on African data, in the browser on any laptop.",
